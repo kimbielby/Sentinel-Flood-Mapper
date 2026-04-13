@@ -1,0 +1,28 @@
+/.idea/
+
+# Data
+/data/raw/Sen1Floods11/*
+/data/raw/STURM/*
+/data/processed/
+/data/inference_examples/
+
+# Outputs
+/outputs/checkpoints/*
+/outputs/figures/*
+/outputs/inference/*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Exceptions
+!**/.gitkeep
+!data/event_splits.csv
+

@@ -1,0 +1,22 @@
+name: floodmapper
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - gdal
+
+  - pip:
+      - torch --index-url https://download.pytorch.org/whl/cu130
+      - torchvision --index-url https://download.pytorch.org/whl/cu130
+      - numpy
+      - scipy
+      - pandas
+      - rasterio
+      - matplotlib
+      - pyyaml
+      - jupyter
+      - ipykernel
+      - segmentation-models-pytorch
+      - albumentations
+      - tqdm

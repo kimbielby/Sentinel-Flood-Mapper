@@ -1,0 +1,91 @@
+# sentinel_flood_mapper configuration
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  checkpoints_dir: outputs/checkpoints
+  inference_checkpoint: outputs/checkpoints/best_model.pt
+  predictions: outputs/predictions
+  figures: outputs/figures
+  logs: outputs/logs
+  splits_file: data/event_splits.csv
+  inference_examples_dir: data/inference_examples
+
+preprocessing:
+  sen1floods11:
+    nan_fill: 0.0
+    clip_min: -30.0
+    clip_max: 10.0
+    apply_lee_filter: true
+    lee_window_size: 7
+  sturm:
+    already_normalised: true
+
+transforms:
+  random_hflip:
+    enabled: true
+    p: 0.5
+  random_vflip:
+    enabled: true
+    p: 0.5
+  random_rotation90:
+    enabled: true
+    p: 0.5
+  random_brightness_contrast:
+    enabled: true
+    p: 0.5
+    brightness_limit: 0.1
+    contrast_limit: 0.1
+
+model:
+  encoder_name: efficientnet-b0
+  encoder_weights: imagenet
+  classes: 1
+
+train:
+  epochs: 200
+  batch_size: 8
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+  patience: 20
+  optimiser: adam
+  lr_scheduler:
+    enabled: true
+    factor: 0.5
+    patience: 5
+    min_lr: 1.0e-6
+  num_workers: 0                 # If memory becomes an issue, change to 0
+  freeze_encoder_epochs: 0
+
+evaluation:
+  num_vis_samples: 4
+
+inference:
+  tile_size: 128
+  stride: 64
+  threshold: 0.5
+
+splits:
+  test_events:
+    - EMSR279
+    - EMSR416
+    - EMSR397
+    - Spain
+    - Bolivia
+  val_fraction: 0.15
+  random_seed: 42
+
+label_maps:
+  sturm:
+    0: 0            # Coastline / area of interest -> Non-Water
+    1: 1             # Flooded areas -> Water
+    2: 1            # Rivers, river banks, streams -> Water
+    3: 1            # Open water -> Water
+    4: 1            # Reservoirs -> Water
+    5: 1            # Lakes -> Water
+    99: 255     # Nodata -> Ignore
+
+  sen1floods11:
+    -1: 255     # Nodata / cloud masked -> Ignore
+    0: 0          # Non-water -> Non-Water
+    1: 1          # Flood water -> Water
