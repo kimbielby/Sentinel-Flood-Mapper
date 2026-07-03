@@ -105,6 +105,13 @@ Sentinel-Flood-Mapper/
 │   ├── 04_predict.ipynb          # Inference on Bolivia chips
 │   ├── test_visualise.ipynb      # Visualisation function testing
 │   └── notebooks_utils.py        # Shared notebook utility functions
+├── tests/
+│   ├── conftest.py               # Shared fixtures
+│   ├── test_preprocess.py
+│   ├── test_losses.py
+│   ├── test_metrics.py
+│   ├── test_predict.py
+│   └── test_dataset.py
 ├── outputs/
 │   ├── checkpoints/              # Model checkpoints (not tracked by Git)
 │   ├── figures/                  # Training curves and evaluation plots
