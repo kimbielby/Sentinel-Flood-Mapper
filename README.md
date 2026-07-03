@@ -198,6 +198,14 @@ The pipeline expects raw Sentinel-1 GRD imagery in dB scale with VV and VH polar
 
 ---
 
+## Testing 
+
+Run the test suite from the project root: 
+
+```bash
+pytest tests/ -v 
+```
+
 ## Pre-trained Model 
 
 The trained model checkpoint is available from the [GitHub Releases page](https://github.com/kimbielby/Sentinel-Flood-Mapper/releases/tag/v1.0.0). 

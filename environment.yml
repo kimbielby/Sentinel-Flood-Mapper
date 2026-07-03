@@ -20,3 +20,4 @@ dependencies:
       - segmentation-models-pytorch
       - albumentations
       - tqdm
+      - pytest
